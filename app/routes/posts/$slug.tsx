@@ -1,6 +1,7 @@
 import { useLoaderData } from 'remix';
+import type { LoaderFunction } from 'remix';
 
-export const loader = async ({ params }) => params.slug;
+export const loader: LoaderFunction = async ({ params }) => params.slug;
 
 export default function PostSlug() {
   const slug = useLoaderData();

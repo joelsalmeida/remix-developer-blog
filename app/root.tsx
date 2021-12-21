@@ -7,7 +7,7 @@ import {
   ScrollRestoration
 } from "remix";
 import type { MetaFunction } from "remix";
-import { Link } from 'react-router-dom';
+import { Link } from 'remix';
 
 export const meta: MetaFunction = () => {
   return { title: "New Remix App" };

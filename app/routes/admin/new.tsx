@@ -1,7 +1,8 @@
 import { Form, redirect } from 'remix';
 import { createPost } from '~/post';
+import type { ActionFunction } from "remix";
 
-export const action = async ({ request }) => {
+export const action: ActionFunction = async ({ request }) => {
   const formData = await request.formData();
 
   const title = formData.get('title');

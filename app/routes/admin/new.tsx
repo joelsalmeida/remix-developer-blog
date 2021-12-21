@@ -1,6 +1,6 @@
-import { Form, redirect } from 'remix';
+import { Form, redirect, useActionData } from 'remix';
 import { createPost } from '~/post';
-import type { ActionFunction } from "remix";
+import type { ActionFunction } from 'remix';
 
 export const action: ActionFunction = async ({ request }) => {
   const formData = await request.formData();
@@ -23,24 +23,29 @@ export const action: ActionFunction = async ({ request }) => {
 };
 
 export default function NewPost() {
+  const errors = useActionData();
+
   return (
     <Form method="post">
       <p>
         <label>
-          Post Title: <input type="text" name="title" />
+          Post Title: {errors?.title ? <em>Title is required</em> : null}
+          <input type="text" name="title" />
         </label>
       </p>
 
       <p>
         <label>
-          Post Slug: <input type="text" name="slug" />
+          Post Slug: {errors?.slug ? <em>Slug is required</em> : null}
+          <input type="text" name="slug" />
         </label>
       </p>
 
       <p>
-        <label htmlFor="markdown">Markdown:</label>
+        <label htmlFor="markdown">Markdown:</label>{' '}
+        {errors?.markdown ? <em>Markdown is required</em> : null}
         <br />
-        <textarea id="markdown" rows={20} name="markdown" />
+        <textarea rows={20} name="markdown" />
       </p>
 
       <p>
